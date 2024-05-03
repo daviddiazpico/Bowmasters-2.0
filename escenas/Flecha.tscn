@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjg0o0imwh5po"]
+
+[ext_resource type="Script" path="res://scripts/Flecha.cs" id="1_852m8"]
+[ext_resource type="Texture2D" uid="uid://d3bq3qra65x3t" path="res://assets/imagenes/spritesheets/spritesheet_flecha1.png" id="1_mca0j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26swu"]
+atlas = ExtResource("1_mca0j")
+region = Rect2(0, 0, 111, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0jeg"]
+atlas = ExtResource("1_mca0j")
+region = Rect2(231, 0, 111, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2mwr"]
+atlas = ExtResource("1_mca0j")
+region = Rect2(462, 0, 111, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1iq1"]
+atlas = ExtResource("1_mca0j")
+region = Rect2(693, 0, 111, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72ty6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26swu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0jeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2mwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1iq1")
+}],
+"loop": true,
+"name": &"movimiento_flecha",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gph6t"]
+radius = 1.50331
+
+[node name="Flecha" type="RigidBody2D"]
+script = ExtResource("1_852m8")
+
+[node name="SpriteFlecha" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_72ty6")
+animation = &"movimiento_flecha"
+
+[node name="HitboxFlecha" type="CollisionShape2D" parent="."]
+position = Vector2(1.42109e-14, 2)
+scale = Vector2(4.84057, -2.43467)
+shape = SubResource("CircleShape2D_gph6t")
