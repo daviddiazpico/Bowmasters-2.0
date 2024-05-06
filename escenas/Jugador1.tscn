@@ -1,39 +1,30 @@
-[gd_scene load_steps=13 format=3 uid="uid://buf0rimqjo4ob"]
+[gd_scene load_steps=16 format=3 uid="uid://buf0rimqjo4ob"]
 
-[ext_resource type="Texture2D" uid="uid://dhul8hc4ba61c" path="res://assets/imagenes/spritesheets/spritesheet_arquero1.png" id="1_i51dj"]
+[ext_resource type="Texture2D" uid="uid://6pr8pbqlhvtl" path="res://assets/imagenes/spritesheets/spritesheet_arquero1.png" id="1_i51dj"]
 [ext_resource type="Script" path="res://scripts/Jugador1.cs" id="1_mom8e"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_51ygi"]
+load_path = "res://.godot/imported/spritesheet_arquero1.png-31b8140b97398cc14499c6ff3d930a9c.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_74it3"]
-atlas = ExtResource("1_i51dj")
+atlas = SubResource("CompressedTexture2D_51ygi")
 region = Rect2(160, 0, 160, 208)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahco6"]
-atlas = ExtResource("1_i51dj")
+atlas = SubResource("CompressedTexture2D_51ygi")
 region = Rect2(320, 0, 160, 208)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4cyu"]
-atlas = ExtResource("1_i51dj")
+atlas = SubResource("CompressedTexture2D_51ygi")
 region = Rect2(480, 0, 160, 208)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dm2x2"]
-atlas = ExtResource("1_i51dj")
+atlas = SubResource("CompressedTexture2D_51ygi")
 region = Rect2(640, 0, 160, 208)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2q6a4"]
-atlas = ExtResource("1_i51dj")
+atlas = SubResource("CompressedTexture2D_51ygi")
 region = Rect2(800, 0, 160, 208)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1pqbl"]
-atlas = ExtResource("1_i51dj")
-region = Rect2(960, 0, 160, 208)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yqqfv"]
-atlas = ExtResource("1_i51dj")
-region = Rect2(1120, 0, 160, 208)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bd54v"]
-atlas = ExtResource("1_i51dj")
-region = Rect2(1280, 0, 160, 208)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y3ium"]
 animations = [{
@@ -52,15 +43,43 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2q6a4")
+}],
+"loop": true,
+"name": &"cargar_disparo",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huvnu"]
+atlas = ExtResource("1_i51dj")
+region = Rect2(960, 0, 160, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_knbp8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huvnu")
+}],
+"loop": true,
+"name": &"aguantar_disparo",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38hnu"]
+atlas = ExtResource("1_i51dj")
+region = Rect2(1120, 0, 160, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3qgt"]
+atlas = ExtResource("1_i51dj")
+region = Rect2(1280, 0, 160, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpdgi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38hnu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1pqbl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yqqfv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bd54v")
+"texture": SubResource("AtlasTexture_g3qgt")
 }],
 "loop": true,
 "name": &"disparar",
@@ -75,10 +94,26 @@ height = 83.6496
 motion_mode = 1
 script = ExtResource("1_mom8e")
 
-[node name="SpriteJugador1" type="AnimatedSprite2D" parent="."]
+[node name="Sprite1Jugador1" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_y3ium")
+animation = &"cargar_disparo"
+speed_scale = 0.5
+
+[node name="Sprite2Jugador1" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_knbp8")
+animation = &"aguantar_disparo"
+frame_progress = 0.0704161
+speed_scale = 0.5
+
+[node name="Sprite3Jugador1" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_vpdgi")
 animation = &"disparar"
+speed_scale = 0.5
 
 [node name="HitboxJugador1" type="CollisionShape2D" parent="."]
 scale = Vector2(3.82841, -0.740058)
@@ -87,3 +122,6 @@ metadata/_edit_lock_ = true
 
 [node name="CamaraJugador" type="Camera2D" parent="."]
 zoom = Vector2(2.75, 2.75)
+
+[connection signal="animation_looped" from="Sprite1Jugador1" to="." method="OnAnimationSprite1Looped"]
+[connection signal="animation_looped" from="Sprite3Jugador1" to="." method="OnAnimationSprite3Looped"]

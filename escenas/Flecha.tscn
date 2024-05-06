@@ -43,6 +43,7 @@ animations = [{
 radius = 1.50331
 
 [node name="Flecha" type="RigidBody2D"]
+lock_rotation = true
 script = ExtResource("1_852m8")
 
 [node name="SpriteFlecha" type="AnimatedSprite2D" parent="."]
