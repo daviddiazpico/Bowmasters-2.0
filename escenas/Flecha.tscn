@@ -43,7 +43,10 @@ animations = [{
 radius = 1.50331
 
 [node name="Flecha" type="RigidBody2D"]
+can_sleep = false
 lock_rotation = true
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("1_852m8")
 
 [node name="SpriteFlecha" type="AnimatedSprite2D" parent="."]
@@ -55,3 +58,8 @@ animation = &"movimiento_flecha"
 position = Vector2(1.42109e-14, 2)
 scale = Vector2(4.84057, -2.43467)
 shape = SubResource("CircleShape2D_gph6t")
+
+[node name="CamaraFlecha" type="Camera2D" parent="."]
+zoom = Vector2(10, 10)
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

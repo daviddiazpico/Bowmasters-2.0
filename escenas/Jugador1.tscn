@@ -120,7 +120,7 @@ scale = Vector2(3.82841, -0.740058)
 shape = SubResource("CapsuleShape2D_itdp6")
 metadata/_edit_lock_ = true
 
-[node name="CamaraJugador" type="Camera2D" parent="."]
+[node name="CamaraJugador1" type="Camera2D" parent="."]
 zoom = Vector2(2.75, 2.75)
 
 [connection signal="animation_looped" from="Sprite1Jugador1" to="." method="OnAnimationSprite1Looped"]
