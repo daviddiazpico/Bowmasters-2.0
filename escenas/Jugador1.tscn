@@ -123,5 +123,5 @@ metadata/_edit_lock_ = true
 [node name="CamaraJugador1" type="Camera2D" parent="."]
 zoom = Vector2(2.75, 2.75)
 
-[connection signal="animation_looped" from="Sprite1Jugador1" to="." method="OnAnimationSprite1Looped"]
-[connection signal="animation_looped" from="Sprite3Jugador1" to="." method="OnAnimationSprite3Looped"]
+[connection signal="animation_looped" from="Sprite1Jugador1" to="." method="_OnAnimationSprite1Looped"]
+[connection signal="animation_looped" from="Sprite3Jugador1" to="." method="_OnAnimationSprite3Looped"]

@@ -8,7 +8,7 @@ public partial class Flecha : RigidBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		this.Position = new Vector2(10, -10);
+		Position = new Vector2(10, -10);
 		anim_Flecha = GetNode<AnimatedSprite2D>("SpriteFlecha");
 	}
 
@@ -20,14 +20,14 @@ public partial class Flecha : RigidBody2D
 	public void Disparar(Vector2 velocidadFlecha)
 	{
 		//anim_Flecha.Play();
-		this.LinearVelocity = velocidadFlecha;
+		LinearVelocity = velocidadFlecha;
 	}
 
 	private void _OnBodyEntered(Node body)
 	{
 		if (body is TileMap)
 		{
-			this.QueueFree();
+			QueueFree();
 		}
 	}
 }

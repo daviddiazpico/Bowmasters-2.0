@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Jugador1 : CharacterBody2D
+public partial class Jugador2 : CharacterBody2D
 {
 	[Signal]
 	public delegate void TurnoCompletadoEventHandler();
@@ -22,11 +22,11 @@ public partial class Jugador1 : CharacterBody2D
 
     public override void _Ready()
 	{
-		Position = new Vector2(157, 200);
+		Position = new Vector2(1060, 200);
 
-		anim_CargarDisparo = GetNode<AnimatedSprite2D>("Sprite1Jugador1");
-		anim_AguantarDisparo = GetNode<AnimatedSprite2D>("Sprite2Jugador1");
-		anim_Disparar = GetNode<AnimatedSprite2D>("Sprite3Jugador1");
+		anim_CargarDisparo = GetNode<AnimatedSprite2D>("Sprite1Jugador2");
+		anim_AguantarDisparo = GetNode<AnimatedSprite2D>("Sprite2Jugador2");
+		anim_Disparar = GetNode<AnimatedSprite2D>("Sprite3Jugador2");
 
 		flecha = (PackedScene)ResourceLoader.Load("res://escenas/Flecha.tscn");
 	}
@@ -37,7 +37,7 @@ public partial class Jugador1 : CharacterBody2D
     public Vector2 VelocidadFlecha { get => velocidadFlecha; set => velocidadFlecha = value; }
     public bool DisparoCargado { get => disparoCargado; set => disparoCargado = value; }
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 		// Add the gravity.
@@ -122,7 +122,7 @@ public partial class Jugador1 : CharacterBody2D
 		Vector2 posicionMouse = GetGlobalMousePosition();
 
 		Vector2 parabola = posicionMouse;
-		parabola = new Vector2(parabola.X, -parabola.Y);
+		parabola = new Vector2(-parabola.X, -parabola.Y);
 
 		return parabola;
 	}

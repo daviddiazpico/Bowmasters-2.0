@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cf34ydc838ctg"]
+[gd_scene load_steps=10 format=3 uid="uid://cf34ydc838ctg"]
 
 [ext_resource type="Texture2D" uid="uid://da16pxqtcwo64" path="res://assets/imagenes/tilesets/tilemap-backgrounds_packed.png" id="1_cyrof"]
 [ext_resource type="Script" path="res://scripts/Partida.cs" id="1_gseak"]
 [ext_resource type="Texture2D" uid="uid://b4w171s1cag4c" path="res://assets/imagenes/tilesets/tilemap_packed.png" id="2_nogl8"]
 [ext_resource type="PackedScene" uid="uid://buf0rimqjo4ob" path="res://escenas/Jugador1.tscn" id="3_siwgj"]
+[ext_resource type="PackedScene" uid="uid://cumhxd8x5r0f3" path="res://escenas/Jugador2.tscn" id="5_325gp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ggsvy"]
 texture = ExtResource("1_cyrof")
@@ -642,3 +643,6 @@ anchor_mode = 0
 
 [node name="Jugador1" parent="." instance=ExtResource("3_siwgj")]
 position = Vector2(157, 200)
+
+[node name="Jugador2" parent="." instance=ExtResource("5_325gp")]
+position = Vector2(1060, 200)

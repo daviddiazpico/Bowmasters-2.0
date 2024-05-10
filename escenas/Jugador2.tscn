@@ -1,0 +1,123 @@
+[gd_scene load_steps=15 format=3 uid="uid://cumhxd8x5r0f3"]
+
+[ext_resource type="Script" path="res://scripts/Jugador2.cs" id="1_4wac3"]
+[ext_resource type="Texture2D" uid="uid://cc8pgg0bleyhb" path="res://assets/imagenes/spritesheets/spritesheet_arquero2.png" id="1_10c3v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mig5w"]
+atlas = ExtResource("1_10c3v")
+region = Rect2(1120, 0, 160, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqiqu"]
+atlas = ExtResource("1_10c3v")
+region = Rect2(960, 0, 160, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elqya"]
+atlas = ExtResource("1_10c3v")
+region = Rect2(800, 0, 160, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxgcl"]
+atlas = ExtResource("1_10c3v")
+region = Rect2(640, 0, 160, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qy8h"]
+atlas = ExtResource("1_10c3v")
+region = Rect2(480, 0, 160, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hvs2o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mig5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqiqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elqya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxgcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qy8h")
+}],
+"loop": true,
+"name": &"cargar_disparo",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb5qc"]
+atlas = ExtResource("1_10c3v")
+region = Rect2(320, 0, 160, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n0ga0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb5qc")
+}],
+"loop": true,
+"name": &"aguantar_disparo",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynm2f"]
+atlas = ExtResource("1_10c3v")
+region = Rect2(160, 0, 160, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpoad"]
+atlas = ExtResource("1_10c3v")
+region = Rect2(0, 0, 160, 208)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ith7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynm2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpoad")
+}],
+"loop": true,
+"name": &"disparar",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_87067"]
+radius = 5.04153
+height = 83.6496
+
+[node name="Jugador2" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_4wac3")
+
+[node name="Sprite1Jugador2" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_hvs2o")
+animation = &"cargar_disparo"
+speed_scale = 0.5
+
+[node name="Sprite2Jugador2" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_n0ga0")
+animation = &"aguantar_disparo"
+speed_scale = 0.5
+
+[node name="Sprite3Jugador2" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_7ith7")
+animation = &"disparar"
+speed_scale = 0.5
+
+[node name="HitboxJugador2" type="CollisionShape2D" parent="."]
+scale = Vector2(3.82841, -0.740058)
+shape = SubResource("CapsuleShape2D_87067")
+metadata/_edit_lock_ = true
+
+[node name="CamaraJugador2" type="Camera2D" parent="."]
+zoom = Vector2(2.75, 2.75)
+
+[connection signal="animation_looped" from="Sprite1Jugador2" to="." method="_OnAnimationSprite1Looped"]
+[connection signal="animation_looped" from="Sprite3Jugador2" to="." method="_OnAnimationSprite3Looped"]
