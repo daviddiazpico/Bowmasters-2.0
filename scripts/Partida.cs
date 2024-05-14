@@ -28,30 +28,36 @@ public partial class Partida : Node2D
 		camaraJugador2 = GetNode<Camera2D>("Jugador2/CamaraJugador2");
 
 		turnoJugador = true;
-
-		if (temporizadorPartida.IsStopped())
-		{
-			SeguirJugadores();
-		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (jugadorActivo is Jugador1)
+		if (temporizadorPartida.IsStopped())
 		{
-			GD.Print("j1");
+			SeguirJugador();
+
+			if (jugadorActivo is Jugador1)
+			{
+				TurnoJugador1();
+			}
+			else if (jugadorActivo is Jugador2)
+			{
+				TurnoJugador2();
+			}
+		}
+		/*if (jugadorActivo is Jugador1)
+		{
 			TurnoJugador1();
 		}
 		else if (jugadorActivo is Jugador2)
 		{
-			GD.Print("j2");
 			TurnoJugador2();
-		}
+		}*/
 		
 	}
 
-	private void SeguirJugadores()
+	private void SeguirJugador()
 	{
 		camaraPartida.Enabled = false;
 		camaraJugador1.Enabled = false;
@@ -59,19 +65,18 @@ public partial class Partida : Node2D
 
 		if (turnoJugador)
 		{
-			turnoJugador = false;
 			camaraJugador1.Enabled = true;
 		}
 		else
 		{
-			turnoJugador = true;
 			camaraJugador2.Enabled = true;
 		}
 	}
 
 	public void TurnoJugador1()
 	{
-		if (Input.IsActionJustPressed("espacio"))
+		SeguirJugador();
+		if (Input.IsActionPressed("espacio"))
 		{
 			jugador1.Anim_CargarDisparo.Play();
 
@@ -87,6 +92,7 @@ public partial class Partida : Node2D
 			{
 				jugador1.Atacar(jugador1.VelocidadFlecha);
 				jugadorActivo = jugador2;
+				turnoJugador = false;
 			}
 			else
 			{
@@ -97,7 +103,8 @@ public partial class Partida : Node2D
 
 	public void TurnoJugador2()
 	{
-		if (Input.IsActionJustPressed("espacio"))
+		SeguirJugador();
+		if (Input.IsActionPressed("espacio"))
 		{
 			jugador2.Anim_CargarDisparo.Play();
 
@@ -113,6 +120,7 @@ public partial class Partida : Node2D
 			{
 				jugador2.Atacar(jugador2.VelocidadFlecha);
 				jugadorActivo = jugador1;
+				turnoJugador = true;
 			}
 			else
 			{

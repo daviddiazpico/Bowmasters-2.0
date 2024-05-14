@@ -8,7 +8,15 @@ public partial class Flecha : RigidBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Position = new Vector2(10, -10);
+		if (GetParent() is Jugador1)
+		{
+			Position = new Vector2(30, -10);
+		}
+		else if (GetParent() is Jugador2)
+		{
+			Position = new Vector2(-30, -10);
+		}
+		
 		anim_Flecha = GetNode<AnimatedSprite2D>("SpriteFlecha");
 	}
 
@@ -26,6 +34,10 @@ public partial class Flecha : RigidBody2D
 	private void _OnBodyEntered(Node body)
 	{
 		if (body is TileMap)
+		{
+			QueueFree();
+		}
+		else if (body is CharacterBody2D)
 		{
 			QueueFree();
 		}

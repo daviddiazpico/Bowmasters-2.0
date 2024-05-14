@@ -1,14 +1,40 @@
-[gd_scene format=3 uid="uid://c8gj3cwgk4tfr"]
+[gd_scene load_steps=2 format=3 uid="uid://c8gj3cwgk4tfr"]
 
-[node name="lista_ranking" type="Control"]
+[ext_resource type="Script" path="res://scripts/VerRanking.cs" id="1_qww8o"]
+
+[node name="VerRanking" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qww8o")
 
-[node name="ItemList" type="ItemList" parent="."]
+[node name="Lbl_MostrarRanking" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 295.0
+offset_top = 98.0
+offset_right = 698.0
+offset_bottom = 193.0
+
+[node name="BotonAtras" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 300.0
+offset_top = 458.0
+offset_right = 349.0
+offset_bottom = 489.0
+text = "Atras"
+
+[node name="BotonSiguiente" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 428.0
+offset_top = 458.0
+offset_right = 508.0
+offset_bottom = 489.0
+text = "Siguiente"
+
+[connection signal="pressed" from="BotonAtras" to="." method="_OnBotonAtrasPressed"]
+[connection signal="pressed" from="BotonSiguiente" to="." method="_OnBotonSiguientePressed"]

@@ -60,6 +60,6 @@ scale = Vector2(4.84057, -2.43467)
 shape = SubResource("CircleShape2D_gph6t")
 
 [node name="CamaraFlecha" type="Camera2D" parent="."]
-zoom = Vector2(10, 10)
+zoom = Vector2(3, 3)
 
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

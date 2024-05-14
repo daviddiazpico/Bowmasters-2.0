@@ -3,9 +3,9 @@ using System;
 
 public partial class Menu : Control
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+	{	
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,12 +15,12 @@ public partial class Menu : Control
 
 	private void OnBotonJugarPressed()
 	{
-		GetTree().ChangeSceneToFile("res://escenas/partida.tscn");
+		GetTree().ChangeSceneToFile("res://escenas/Partida.tscn");
 	}
 
 	private void OnBotonRankingPressed()
 	{
-		GD.Print("Ranking");
+		GetTree().ChangeSceneToFile("res://escenas/Ver_ranking.tscn");
 	}
 	
 	private void OnBotonSalirPressed()
