@@ -3,6 +3,7 @@ using System;
 
 public partial class Flecha : RigidBody2D
 {
+	// Animacion flecha
 	AnimatedSprite2D anim_Flecha;
 	
 	// Called when the node enters the scene tree for the first time.
@@ -39,7 +40,18 @@ public partial class Flecha : RigidBody2D
 		}
 		else if (body is CharacterBody2D)
 		{
-			QueueFree();
+			if (body is Jugador1)
+			{
+				Jugador1 jugador1 = GetParent().GetNode<Jugador1>("/root/Partida/Jugador1");
+				jugador1.QuitarVida();
+				QueueFree();
+			}
+			else if (body is Jugador2)
+			{
+				Jugador2 jugador2 = GetParent().GetNode<Jugador2>("/root/Partida/Jugador2");
+				jugador2.QuitarVida();
+				QueueFree();
+			}
 		}
 	}
 }

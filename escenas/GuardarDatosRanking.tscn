@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://vgpdjaln4otv"]
+
+[ext_resource type="Script" path="res://scripts/GuardarDatosRanking.cs" id="1_5b7d1"]
+
+[node name="GuardarDatosRanking" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5b7d1")
+
+[node name="LblEnhorabuena" type="Label" parent="."]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 47.0
+offset_right = 642.0
+offset_bottom = 70.0
+
+[node name="LblInformativo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 123.0
+offset_right = 886.0
+offset_bottom = 146.0
+text = "Introducir vuestros nombres para almacenar los datos en el ranking"
+
+[node name="Lbl1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 181.0
+offset_right = 469.0
+offset_bottom = 204.0
+text = "Jugador 1"
+
+[node name="NombreJugador1" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 393.0
+offset_top = 207.0
+offset_right = 551.0
+offset_bottom = 244.0
+placeholder_text = "Nombre"
+
+[node name="Lbl2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 714.0
+offset_top = 179.0
+offset_right = 788.0
+offset_bottom = 202.0
+text = "Jugador 2"
+
+[node name="NombreJugador2" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 207.0
+offset_right = 861.0
+offset_bottom = 242.0
+placeholder_text = "Nombre"
+
+[node name="BotonGuardar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 403.0
+offset_right = 694.0
+offset_bottom = 434.0
+text = "GUARDAR"
+
+[connection signal="pressed" from="BotonGuardar" to="." method="_OnBotonIniciarPressed"]

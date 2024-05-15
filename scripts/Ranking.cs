@@ -8,34 +8,7 @@ public partial class Ranking : Node
 
     public Ranking()
     {
-        //listaRanking = RegistroRanking.Cargar();
         listaRanking = new List<RegistroRanking>();
-        listaRanking.Add(new RegistroRanking("David"));
-        listaRanking.Add(new RegistroRanking("Ismael"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Yee"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Iker"));
-        listaRanking.Add(new RegistroRanking("Dabi"));
     }
 
     public List<RegistroRanking> ListaRanking { get => listaRanking; }
@@ -43,6 +16,20 @@ public partial class Ranking : Node
     public void AddRegistro(RegistroRanking r)
     {
         listaRanking.Add(r);
+    }
+
+    public void ModificarRegistro(RegistroRanking r, bool haGanado)
+    {
+        r.PartJugadas++;
+        
+        if (haGanado)
+        {
+            r.PartGanadas++;
+        }
+        else
+        {
+            r.PartPerdidas++;
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://buf0rimqjo4ob"]
+[gd_scene load_steps=18 format=3 uid="uid://buf0rimqjo4ob"]
 
 [ext_resource type="Texture2D" uid="uid://6pr8pbqlhvtl" path="res://assets/imagenes/spritesheets/spritesheet_arquero1.png" id="1_i51dj"]
 [ext_resource type="Script" path="res://scripts/Jugador1.cs" id="1_mom8e"]
@@ -90,6 +90,31 @@ animations = [{
 radius = 5.04153
 height = 83.6496
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ot8ms"]
+bg_color = Color(0.2, 0.2, 0.2, 0.839216)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huy1b"]
+bg_color = Color(0.521569, 0, 0, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="Jugador1" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_mom8e")
@@ -122,6 +147,19 @@ metadata/_edit_lock_ = true
 
 [node name="CamaraJugador1" type="Camera2D" parent="."]
 zoom = Vector2(2.75, 2.75)
+
+[node name="BarraVidaJugador1" type="ProgressBar" parent="."]
+visible = false
+offset_left = -216.0
+offset_top = -107.0
+offset_right = -154.0
+offset_bottom = -90.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ot8ms")
+theme_override_styles/fill = SubResource("StyleBoxFlat_huy1b")
+max_value = 200.0
+step = 1.0
+value = 200.0
+show_percentage = false
 
 [connection signal="animation_looped" from="Sprite1Jugador1" to="." method="_OnAnimationSprite1Looped"]
 [connection signal="animation_looped" from="Sprite3Jugador1" to="." method="_OnAnimationSprite3Looped"]

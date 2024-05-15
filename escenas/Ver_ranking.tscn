@@ -36,5 +36,14 @@ offset_right = 508.0
 offset_bottom = 489.0
 text = "Siguiente"
 
+[node name="BotonSalir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 30.0
+offset_right = 120.0
+offset_bottom = 61.0
+text = "VOLVER"
+
 [connection signal="pressed" from="BotonAtras" to="." method="_OnBotonAtrasPressed"]
 [connection signal="pressed" from="BotonSiguiente" to="." method="_OnBotonSiguientePressed"]
+[connection signal="pressed" from="BotonSalir" to="." method="_OnBotonVolverPressed"]

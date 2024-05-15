@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.IO;
 
 public partial class VerRanking : Control
 {
@@ -10,16 +11,25 @@ public partial class VerRanking : Control
 	Button botonSiguiente;
 	Button botonAtras;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 		ranking = new Ranking();
+		string[] lineasRanking = File.ReadAllLines("ficheros/ranking.txt");
+
+		for (int i = 0; i<lineasRanking.Length; i++)
+		{
+			string[] trozosRegistro = lineasRanking[i].Split(';');
+			ranking.AddRegistro(new RegistroRanking(trozosRegistro[0], Convert.ToInt32(trozosRegistro[1]), 
+				Convert.ToInt32(trozosRegistro[2]), Convert.ToInt32(trozosRegistro[3]), Convert.ToDateTime(trozosRegistro[4])));
+		}
+
 		numRegistrosMostrados = 0;
 
 		lblRanking = GetNode<Label>("Lbl_MostrarRanking");
 		botonSiguiente = GetNode<Button>("BotonSiguiente");
 		botonAtras = GetNode<Button>("BotonAtras");
-		GD.Print(ranking.ListaRanking.Count);
+		
 		if (ranking.ListaRanking.Count < 10)
 		{
 			foreach (RegistroRanking r in ranking.ListaRanking)
@@ -36,8 +46,9 @@ public partial class VerRanking : Control
 			}
 			numRegistrosMostrados += 10;
 		}
-		GD.Print(numRegistrosMostrados);
 	}
+
+	public Ranking Ranking { get => ranking; set => ranking = value; }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -45,7 +56,7 @@ public partial class VerRanking : Control
 
 	}
 
-	public void _OnBotonAtrasPressed()
+	private void _OnBotonAtrasPressed()
 	{
 		if (numRegistrosMostrados > 0)
 		{
@@ -64,7 +75,7 @@ public partial class VerRanking : Control
 		}
 	}
 
-	public void _OnBotonSiguientePressed()
+	private void _OnBotonSiguientePressed()
 	{
 		botonAtras.Visible = true;
 		if (numRegistrosMostrados < ranking.ListaRanking.Count)
@@ -76,5 +87,10 @@ public partial class VerRanking : Control
 			}
 			numRegistrosMostrados+=10;
 		}
+	}
+
+	private void _OnBotonVolverPressed()
+	{
+		GetTree().ChangeSceneToFile("res://escenas/Pantalla_bienvenida.tscn");
 	}
 }

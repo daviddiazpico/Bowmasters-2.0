@@ -2,14 +2,14 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 
-public partial class RegistroRanking : Node
+public partial class RegistroRanking : Node, IEquatable<RegistroRanking>
 {
     string nombreJugador;
     int partJugadas;
     int partGanadas;
     int partPerdidas;
+    DateTime primeraVezJugo;
 
     public RegistroRanking(string nombreJugador)
     {
@@ -17,35 +17,64 @@ public partial class RegistroRanking : Node
         partJugadas = 0;
         partGanadas = 0;
         partPerdidas = 0;
+        primeraVezJugo = DateTime.Today;
     }
 
-    public RegistroRanking() { }
+    public RegistroRanking(string nombreJugador, int partJugadas, bool haGanado)
+    {
+        this.nombreJugador = nombreJugador;
+        this.partJugadas = partJugadas;
+
+        if (haGanado)
+        {
+            partGanadas = 1;
+            partPerdidas = 0;
+        }
+        else
+        {
+            partGanadas = 0;
+            partPerdidas = 1;
+        }
+        
+        primeraVezJugo = DateTime.Today;
+    }
+
+    public RegistroRanking(string nombreJugador, int partJugadas, 
+        int partGanadas, int partPerdidas, DateTime primeraVezJugo)
+    {
+        this.nombreJugador = nombreJugador;
+        this.partJugadas = partJugadas;
+        this.partGanadas = partGanadas;
+        this.partPerdidas = partPerdidas;
+        this.primeraVezJugo = primeraVezJugo;
+    }
 
     public string NombreJugador { get => nombreJugador; set => nombreJugador = value; }
     public int PartJugadas { get => partJugadas; set => partJugadas = value; }
     public int PartGanadas { get => partGanadas; set => partGanadas = value; }
     public int PartPerdidas { get => partPerdidas; set => partPerdidas = value; }
+    public DateTime PrimeraVezJugado { get => primeraVezJugo; set => primeraVezJugo = value; }
+
 
     public override string ToString()
     {
-        return $"{nombreJugador} - {partJugadas} - {partGanadas} - {partPerdidas}";
+        return $"{nombreJugador} - {partJugadas} - {partGanadas} - {partPerdidas} - {primeraVezJugo.ToString("d")}";
     }
 
-    public static void Guardar(List<RegistroRanking> ranking)
+    public string ToString(string formato)
     {
-        JsonSerializerOptions opciones = new JsonSerializerOptions{ WriteIndented = true };
-        string jsonString = JsonSerializer.Serialize(ranking, opciones);
-        File.WriteAllText("ranking.json", jsonString);
+        if (formato == "f")
+        {
+            return $"{nombreJugador};{partJugadas};{partGanadas};{partPerdidas};{primeraVezJugo.ToString("d")}";
+        }
+        else
+        {
+            return null;
+        }
     }
 
-    public static List<RegistroRanking> Cargar()
+    public bool Equals(RegistroRanking other)
     {
-        List<RegistroRanking> rankingCargado;
-
-        string datosFichero = File.ReadAllText("ranking.json");
-        rankingCargado = JsonSerializer.Deserialize<List<RegistroRanking>>(datosFichero);
-
-        return rankingCargado;
+        return this.nombreJugador.Equals(other.nombreJugador);
     }
-
 }

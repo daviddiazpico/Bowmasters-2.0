@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static Flecha;
 
 public partial class Jugador2 : Jugador
 {
@@ -12,6 +13,11 @@ public partial class Jugador2 : Jugador
 		anim_Disparar = GetNode<AnimatedSprite2D>("Sprite3Jugador2");
 
 		flecha = (PackedScene)ResourceLoader.Load("res://escenas/Flecha.tscn");
+
+		barraVida = GetNode<ProgressBar>("BarraVidaJugador2");
+		
+		vida = 200;
+		haGanado = true;
 	}
 
 	public override void _PhysicsProcess(double delta)

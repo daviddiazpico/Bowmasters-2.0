@@ -12,6 +12,11 @@ public partial class Jugador1 : Jugador
 		anim_Disparar = GetNode<AnimatedSprite2D>("Sprite3Jugador1");
 
 		flecha = (PackedScene)ResourceLoader.Load("res://escenas/Flecha.tscn");
+
+		barraVida = GetNode<ProgressBar>("BarraVidaJugador1");
+		
+		vida = 200;
+		haGanado = true;
 	}
 
     public override void _PhysicsProcess(double delta)
@@ -25,8 +30,6 @@ public partial class Jugador1 : Jugador
 		Velocity = velocity;
 		MoveAndSlide();
 	}
-
-	
 
 	public void _OnAnimationSprite1Looped()
 	{
