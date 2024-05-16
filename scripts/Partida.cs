@@ -10,6 +10,11 @@ public partial class Partida : Node2D
 	Jugador2 jugador2;
 	CharacterBody2D jugadorActivo;
 
+	ProgressBar barraVidaJugador1;
+	ProgressBar barraVidaJugador2;
+	Vector2 posicionInicialBarraVidaJugador1;
+	Vector2 posicionInicialBarraVidaJugador2;
+
 	// Camaras
 	Camera2D camaraPartida;
 	Camera2D camaraJugador1;
@@ -21,6 +26,8 @@ public partial class Partida : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+		/* Instanciar DatosPartida para saber quien ha ganado y 
+			en caso de que exista lo eliminamos, ya que solo puede haber uno.*/
 		if (DatosPartida.Instancia == null)
         {
             DatosPartida.Instancia = new DatosPartida();
@@ -33,7 +40,19 @@ public partial class Partida : Node2D
 		temporizadorPartida = GetNode<Timer>("TemporizadorPartida");
 
 		jugador1 = GetNode<Jugador1>("Jugador1");
+		barraVidaJugador1 = jugador1.GetNode<ProgressBar>("BarraVidaJugador1");
+		posicionInicialBarraVidaJugador1 = barraVidaJugador1.Position;
+
 		jugador2 = GetNode<Jugador2>("Jugador2");
+		barraVidaJugador2 = jugador2.GetNode<ProgressBar>("BarraVidaJugador2");
+		posicionInicialBarraVidaJugador2 = barraVidaJugador2.Position;
+
+		// Poner barras visibles y moverlas para que no se vean hasta que enfoque al jugador
+		jugador1.BarraVida.Visible = true;
+		jugador2.BarraVida.Visible = true;
+		jugador1.BarraVida.GlobalPosition = new Vector2(-100, -100);
+		jugador2.BarraVida.GlobalPosition = new Vector2(-100, -100);
+
 		jugadorActivo = jugador1;
 
 		camaraPartida = GetNode<Camera2D>("CamaraPartida");
@@ -46,9 +65,10 @@ public partial class Partida : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		/*GD.Print("JUG 1" + jugador1.BarraVida.Visible);
+		GD.Print("JUG 2" + jugador2.BarraVida.Visible);*/
 		if (temporizadorPartida.IsStopped())
 		{
-			ActivarBarrasVida();
 			SeguirJugador();
 
 			if (jugador1.HaMuerto() || jugador2.HaMuerto())
@@ -92,6 +112,9 @@ public partial class Partida : Node2D
 		// Reiniciar la velocidad de la flecha del jugador 2
 		jugador2.VelocidadFlecha = new Vector2(0, 0);
 
+		barraVidaJugador1.Position = posicionInicialBarraVidaJugador1;
+		barraVidaJugador2.GlobalPosition = new Vector2(jugador1.Position.X + 154, jugador2.Position.Y - 89);
+
 		SeguirJugador();
 
 		if (Input.IsActionPressed("espacio"))
@@ -108,6 +131,8 @@ public partial class Partida : Node2D
 		{
 			if (jugador1.DisparoCargado)
 			{
+				jugador1.BarraVida.Visible = false;
+				jugador2.BarraVida.Visible = false;
 				jugador1.Atacar(jugador1.VelocidadFlecha);
 				jugadorActivo = jugador2;
 				turnoJugador = false;
@@ -123,6 +148,9 @@ public partial class Partida : Node2D
 	{
 		// Reiniciar la velocidad de la flecha del jugador 1
 		jugador1.VelocidadFlecha = new Vector2(0, 0);
+
+		barraVidaJugador2.Position = posicionInicialBarraVidaJugador2;
+		barraVidaJugador1.GlobalPosition = new Vector2(jugador2.Position.X - 216, jugador2.Position.Y - 107);
 
 		SeguirJugador();
 
@@ -140,6 +168,8 @@ public partial class Partida : Node2D
 		{
 			if (jugador2.DisparoCargado)
 			{
+				jugador1.BarraVida.Visible = false;
+				jugador2.BarraVida.Visible = false;
 				jugador2.Atacar(jugador2.VelocidadFlecha);
 				jugadorActivo = jugador1;
 				turnoJugador = true;
@@ -149,11 +179,5 @@ public partial class Partida : Node2D
 				jugador2.DesactivarTodasLasAnimaciones();
 			}
 		}
-	}
-
-	private void ActivarBarrasVida()
-	{
-		jugador1.BarraVida.Visible = true;
-		jugador2.BarraVida.Visible = true;
 	}
 }

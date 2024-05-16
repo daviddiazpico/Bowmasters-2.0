@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6pr8pbqlhvtl"
-path="res://.godot/imported/spritesheet_arquero1.png-31b8140b97398cc14499c6ff3d930a9c.ctex"
+uid="uid://cr4wg6nstmpqe"
+path="res://.godot/imported/spritesheet_arquero_morado.png-12f43c1d156be338e5479402ea1eddeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/imagenes/spritesheets/spritesheet_arquero1.png"
-dest_files=["res://.godot/imported/spritesheet_arquero1.png-31b8140b97398cc14499c6ff3d930a9c.ctex"]
+source_file="res://assets/imagenes/spritesheets/spritesheet_arquero_morado.png"
+dest_files=["res://.godot/imported/spritesheet_arquero_morado.png-12f43c1d156be338e5479402ea1eddeb.ctex"]
 
 [params]
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8gj3cwgk4tfr"]
+[gd_scene load_steps=3 format=3 uid="uid://c8gj3cwgk4tfr"]
 
 [ext_resource type="Script" path="res://scripts/VerRanking.cs" id="1_qww8o"]
+[ext_resource type="Texture2D" uid="uid://cxxmaotw4ofb8" path="res://assets/imagenes/complementos/estatua_arquero.png" id="2_n5sun"]
 
 [node name="VerRanking" type="Control"]
 layout_mode = 3
@@ -19,7 +20,6 @@ offset_right = 698.0
 offset_bottom = 193.0
 
 [node name="BotonAtras" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 300.0
 offset_top = 458.0
@@ -28,7 +28,6 @@ offset_bottom = 489.0
 text = "Atras"
 
 [node name="BotonSiguiente" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 428.0
 offset_top = 458.0
@@ -43,6 +42,15 @@ offset_top = 30.0
 offset_right = 120.0
 offset_bottom = 61.0
 text = "VOLVER"
+
+[node name="ImgEstatuaArquero" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 751.0
+offset_top = 19.0
+offset_right = 1151.0
+offset_bottom = 579.0
+texture = ExtResource("2_n5sun")
+flip_h = true
 
 [connection signal="pressed" from="BotonAtras" to="." method="_OnBotonAtrasPressed"]
 [connection signal="pressed" from="BotonSiguiente" to="." method="_OnBotonSiguientePressed"]

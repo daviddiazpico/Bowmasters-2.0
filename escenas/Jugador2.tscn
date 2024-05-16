@@ -1,82 +1,82 @@
 [gd_scene load_steps=17 format=3 uid="uid://cumhxd8x5r0f3"]
 
 [ext_resource type="Script" path="res://scripts/Jugador2.cs" id="1_4wac3"]
-[ext_resource type="Texture2D" uid="uid://cc8pgg0bleyhb" path="res://assets/imagenes/spritesheets/spritesheet_arquero2.png" id="1_10c3v"]
+[ext_resource type="Texture2D" uid="uid://cr4wg6nstmpqe" path="res://assets/imagenes/spritesheets/spritesheet_arquero_morado.png" id="3_yojao"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mig5w"]
-atlas = ExtResource("1_10c3v")
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0ql3"]
+atlas = ExtResource("3_yojao")
 region = Rect2(1120, 0, 160, 208)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gqiqu"]
-atlas = ExtResource("1_10c3v")
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5ond"]
+atlas = ExtResource("3_yojao")
 region = Rect2(960, 0, 160, 208)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_elqya"]
-atlas = ExtResource("1_10c3v")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dprl3"]
+atlas = ExtResource("3_yojao")
 region = Rect2(800, 0, 160, 208)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nxgcl"]
-atlas = ExtResource("1_10c3v")
+[sub_resource type="AtlasTexture" id="AtlasTexture_w185c"]
+atlas = ExtResource("3_yojao")
 region = Rect2(640, 0, 160, 208)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7qy8h"]
-atlas = ExtResource("1_10c3v")
+[sub_resource type="AtlasTexture" id="AtlasTexture_trti6"]
+atlas = ExtResource("3_yojao")
 region = Rect2(480, 0, 160, 208)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hvs2o"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_xca7y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mig5w")
+"texture": SubResource("AtlasTexture_l0ql3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gqiqu")
+"texture": SubResource("AtlasTexture_b5ond")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_elqya")
+"texture": SubResource("AtlasTexture_dprl3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nxgcl")
+"texture": SubResource("AtlasTexture_w185c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7qy8h")
+"texture": SubResource("AtlasTexture_trti6")
 }],
 "loop": true,
 "name": &"cargar_disparo",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bb5qc"]
-atlas = ExtResource("1_10c3v")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgx14"]
+atlas = ExtResource("3_yojao")
 region = Rect2(320, 0, 160, 208)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_n0ga0"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_658df"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bb5qc")
+"texture": SubResource("AtlasTexture_xgx14")
 }],
 "loop": true,
 "name": &"aguantar_disparo",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ynm2f"]
-atlas = ExtResource("1_10c3v")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmxtd"]
+atlas = ExtResource("3_yojao")
 region = Rect2(160, 0, 160, 208)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpoad"]
-atlas = ExtResource("1_10c3v")
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1f81"]
+atlas = ExtResource("3_yojao")
 region = Rect2(0, 0, 160, 208)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7ith7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ynm2f")
+"texture": SubResource("AtlasTexture_tmxtd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wpoad")
+"texture": SubResource("AtlasTexture_n1f81")
 }],
 "loop": true,
 "name": &"disparar",
@@ -118,14 +118,14 @@ script = ExtResource("1_4wac3")
 
 [node name="Sprite1Jugador2" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
-sprite_frames = SubResource("SpriteFrames_hvs2o")
+sprite_frames = SubResource("SpriteFrames_xca7y")
 animation = &"cargar_disparo"
 speed_scale = 0.5
 
 [node name="Sprite2Jugador2" type="AnimatedSprite2D" parent="."]
 visible = false
 scale = Vector2(0.3, 0.3)
-sprite_frames = SubResource("SpriteFrames_n0ga0")
+sprite_frames = SubResource("SpriteFrames_658df")
 animation = &"aguantar_disparo"
 speed_scale = 0.5
 

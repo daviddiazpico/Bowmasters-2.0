@@ -42,6 +42,14 @@ flat = true
 alignment = 0
 metadata/_edit_lock_ = true
 
+[node name="BotonComoJugar" type="Button" parent="VB_Botones"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q3ojm")
+theme_override_font_sizes/font_size = 50
+text = "COMO JUGAR"
+flat = true
+metadata/_edit_lock_ = true
+
 [node name="BotonSalir" type="Button" parent="VB_Botones"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_q3ojm")
@@ -70,7 +78,8 @@ texture_pressed = ExtResource("3_qubwn")
 texture_hover = ExtResource("5_hrhf5")
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="VB_Botones/BotonJugar" to="." method="OnBotonJugarPressed"]
-[connection signal="pressed" from="VB_Botones/BotonRanking" to="." method="OnBotonRankingPressed"]
-[connection signal="pressed" from="VB_Botones/BotonSalir" to="." method="OnBotonSalirPressed"]
-[connection signal="pressed" from="BotonAjustes" to="." method="OnBotonAjustesPressed"]
+[connection signal="pressed" from="VB_Botones/BotonJugar" to="." method="_OnBotonJugarPressed"]
+[connection signal="pressed" from="VB_Botones/BotonRanking" to="." method="_OnBotonRankingPressed"]
+[connection signal="pressed" from="VB_Botones/BotonComoJugar" to="." method="_OnBotonComoJugarPressed"]
+[connection signal="pressed" from="VB_Botones/BotonSalir" to="." method="_OnBotonSalirPressed"]
+[connection signal="pressed" from="BotonAjustes" to="." method="_OnBotonAjustesPressed"]

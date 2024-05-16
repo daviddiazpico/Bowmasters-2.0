@@ -13,22 +13,27 @@ public partial class Menu : Control
 	{
 	}
 
-	private void OnBotonJugarPressed()
+	private void _OnBotonJugarPressed()
 	{
 		GetTree().ChangeSceneToFile("res://escenas/Partida.tscn");
 	}
 
-	private void OnBotonRankingPressed()
+	private void _OnBotonRankingPressed()
 	{
 		GetTree().ChangeSceneToFile("res://escenas/Ver_ranking.tscn");
 	}
+
+	private void _OnBotonComoJugarPressed()
+	{
+		GD.Print("Como jugar");
+	}
 	
-	private void OnBotonSalirPressed()
+	private void _OnBotonSalirPressed()
 	{
 		GetTree().Quit();
 	}
 
-	public void OnBotonAjustesPressed()
+	public void _OnBotonAjustesPressed()
 	{
 		GD.Print("ajustes");
 	}

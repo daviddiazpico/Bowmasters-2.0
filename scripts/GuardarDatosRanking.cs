@@ -61,11 +61,11 @@ public partial class GuardarDatosRanking : Control
 
 		if (haGanadoJugador1)
 		{
-			lblEnhorabuena.Text = "Enhorabuena Jugador 1";
+			lblEnhorabuena.Text = "ENHORABUENA JUGADOR 1";
 		}
 		else
 		{
-			lblEnhorabuena.Text = "Enhorabuena Jugador 2";
+			lblEnhorabuena.Text = "ENHORABUENA JUGADOR 2";
 		}
 
 		inputField1 = GetNode<TextEdit>("NombreJugador1");
@@ -109,7 +109,7 @@ public partial class GuardarDatosRanking : Control
 		}
 		
 		ActualizarRanking();
-		//GetTree().ChangeSceneToFile("res://escenas/Pantalla_bienvenida.tscn");
+		GetTree().ChangeSceneToFile("res://escenas/Pantalla_bienvenida.tscn");
 	}
 
 	private bool ExisteElUsuario(string nombre)

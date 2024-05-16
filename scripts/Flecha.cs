@@ -34,23 +34,30 @@ public partial class Flecha : RigidBody2D
 
 	private void _OnBodyEntered(Node body)
 	{
+		Jugador1 jugador1 = GetParent().GetNode<Jugador1>("/root/Partida/Jugador1");
+		Jugador2 jugador2 = GetParent().GetNode<Jugador2>("/root/Partida/Jugador2");
+
 		if (body is TileMap)
 		{
 			QueueFree();
+			jugador1.BarraVida.Visible = true;
+			jugador2.BarraVida.Visible = true;
 		}
 		else if (body is CharacterBody2D)
 		{
 			if (body is Jugador1)
 			{
-				Jugador1 jugador1 = GetParent().GetNode<Jugador1>("/root/Partida/Jugador1");
 				jugador1.QuitarVida();
 				QueueFree();
+				jugador1.BarraVida.Visible = true;
+				jugador2.BarraVida.Visible = true;
 			}
 			else if (body is Jugador2)
 			{
-				Jugador2 jugador2 = GetParent().GetNode<Jugador2>("/root/Partida/Jugador2");
 				jugador2.QuitarVida();
 				QueueFree();
+				jugador1.BarraVida.Visible = true;
+				jugador2.BarraVida.Visible = true;
 			}
 		}
 	}
