@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://u8enot3gbdlv"]
+[gd_scene load_steps=4 format=3 uid="uid://u8enot3gbdlv"]
 
 [ext_resource type="Script" path="res://scripts/Menu.cs" id="1_o54l4"]
 [ext_resource type="Texture2D" uid="uid://bb02pjqqfn73f" path="res://assets/imagenes/bienvenida/Bienvenida_Bowmasters_TamanReducido.png" id="1_o81y7"]
 [ext_resource type="FontFile" uid="uid://duoppkqqir6t1" path="res://assets/fuentes/ConnectionII.otf" id="2_q3ojm"]
-[ext_resource type="Texture2D" uid="uid://o26gp46gmesw" path="res://assets/imagenes/bienvenida/imagen_ajustes.png" id="3_qubwn"]
-[ext_resource type="Texture2D" uid="uid://bb7rm4oqd5k6g" path="res://assets/imagenes/bienvenida/imagen_ajustes_hover.png" id="5_hrhf5"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -66,20 +64,17 @@ offset_bottom = 40.0
 texture = ExtResource("1_o81y7")
 metadata/_edit_lock_ = true
 
-[node name="BotonAjustes" type="TextureButton" parent="."]
+[node name="LblCreditos" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1123.0
-offset_top = 9.0
-offset_right = 1279.0
-offset_bottom = 165.0
-scale = Vector2(0.436329, 0.436329)
-texture_normal = ExtResource("3_qubwn")
-texture_pressed = ExtResource("3_qubwn")
-texture_hover = ExtResource("5_hrhf5")
-metadata/_edit_lock_ = true
+offset_left = 940.0
+offset_top = 571.0
+offset_right = 1190.0
+offset_bottom = 592.0
+theme_override_fonts/font = ExtResource("2_q3ojm")
+theme_override_font_sizes/font_size = 15
+text = "Desarrollado por DAVID DÍAZ PICÓ"
 
 [connection signal="pressed" from="VB_Botones/BotonJugar" to="." method="_OnBotonJugarPressed"]
 [connection signal="pressed" from="VB_Botones/BotonRanking" to="." method="_OnBotonRankingPressed"]
 [connection signal="pressed" from="VB_Botones/BotonComoJugar" to="." method="_OnBotonComoJugarPressed"]
 [connection signal="pressed" from="VB_Botones/BotonSalir" to="." method="_OnBotonSalirPressed"]
-[connection signal="pressed" from="BotonAjustes" to="." method="_OnBotonAjustesPressed"]

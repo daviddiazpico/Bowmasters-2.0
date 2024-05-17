@@ -16,13 +16,17 @@ public partial class VerRanking : Control
 	{
 		ranking = new Ranking();
 		string[] lineasRanking = File.ReadAllLines("ficheros/ranking.txt");
-
-		for (int i = 0; i<lineasRanking.Length; i++)
+		GD.Print(lineasRanking.Length);
+		if (lineasRanking.Length > 0)
 		{
-			string[] trozosRegistro = lineasRanking[i].Split(';');
-			ranking.AddRegistro(new RegistroRanking(trozosRegistro[0], Convert.ToInt32(trozosRegistro[1]), 
-				Convert.ToInt32(trozosRegistro[2]), Convert.ToInt32(trozosRegistro[3]), Convert.ToDateTime(trozosRegistro[4])));
+			for (int i = 0; i<lineasRanking.Length; i++)
+			{
+				string[] trozosRegistro = lineasRanking[i].Split(';');
+				ranking.AddRegistro(new RegistroRanking(trozosRegistro[0], Convert.ToInt32(trozosRegistro[1]), 
+					Convert.ToInt32(trozosRegistro[2]), Convert.ToInt32(trozosRegistro[3]), Convert.ToDateTime(trozosRegistro[4])));
+			}
 		}
+		
 
 		numRegistrosMostrados = 0;
 

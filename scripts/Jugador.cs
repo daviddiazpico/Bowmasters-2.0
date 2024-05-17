@@ -8,6 +8,7 @@ public partial class Jugador : CharacterBody2D
 
     // Atributos del jugador
     protected string nombre;
+    private string apellidos;
     protected int vida;
     protected bool haGanado;
 
@@ -31,8 +32,10 @@ public partial class Jugador : CharacterBody2D
     public bool DisparoCargado { get => disparoCargado; set => disparoCargado = value; }
     public ProgressBar BarraVida { get => barraVida; set => barraVida = value; }
     public string Nombre { get => nombre; set => nombre = value; }
+	public string Apellidos { get => apellidos; set => apellidos = value; }
     public int Vida { get => vida; set => vida = value; }
     public bool HaGanado { get => haGanado; set => haGanado = value; }
+
 
     public void DesactivarTodasLasAnimaciones()
 	{
@@ -94,7 +97,7 @@ public partial class Jugador : CharacterBody2D
 
     public void QuitarVida()
     {
-        vida -= 100;
+        vida -= 200;
         barraVida.Value = vida;
     }
 

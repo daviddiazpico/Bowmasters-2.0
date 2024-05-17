@@ -14,10 +14,10 @@ script = ExtResource("1_qww8o")
 
 [node name="Lbl_MostrarRanking" type="Label" parent="."]
 layout_mode = 0
-offset_left = 295.0
-offset_top = 98.0
-offset_right = 698.0
-offset_bottom = 193.0
+offset_left = 200.0
+offset_top = 95.0
+offset_right = 600.0
+offset_bottom = 190.0
 
 [node name="BotonAtras" type="Button" parent="."]
 layout_mode = 0

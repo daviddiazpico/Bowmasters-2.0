@@ -25,7 +25,7 @@ public partial class Menu : Control
 
 	private void _OnBotonComoJugarPressed()
 	{
-		GD.Print("Como jugar");
+		GetTree().ChangeSceneToFile("res://escenas/ComoJugar.tscn");
 	}
 	
 	private void _OnBotonSalirPressed()
@@ -33,10 +33,10 @@ public partial class Menu : Control
 		GetTree().Quit();
 	}
 
-	public void _OnBotonAjustesPressed()
+	/*public void _OnBotonAjustesPressed()
 	{
 		GD.Print("ajustes");
-	}
+	}*/
 }
 
 

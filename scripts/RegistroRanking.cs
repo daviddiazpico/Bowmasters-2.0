@@ -20,9 +20,9 @@ public partial class RegistroRanking : Node, IEquatable<RegistroRanking>
         primeraVezJugo = DateTime.Today;
     }
 
-    public RegistroRanking(string nombreJugador, int partJugadas, bool haGanado)
+    public RegistroRanking(string nombre, int partJugadas, bool haGanado)
     {
-        this.nombreJugador = nombreJugador;
+        this.nombreJugador = nombre;
         this.partJugadas = partJugadas;
 
         if (haGanado)
@@ -58,7 +58,8 @@ public partial class RegistroRanking : Node, IEquatable<RegistroRanking>
 
     public override string ToString()
     {
-        return $"{nombreJugador} - {partJugadas} - {partGanadas} - {partPerdidas} - {primeraVezJugo.ToString("d")}";
+        return $"{nombreJugador} - Jugadas -> {partJugadas}," + 
+            $"Ganadas -> {partGanadas}, Perdidas -> {partPerdidas}, 1º vez que jugo -> {primeraVezJugo.ToString("d")}";
     }
 
     public string ToString(string formato)

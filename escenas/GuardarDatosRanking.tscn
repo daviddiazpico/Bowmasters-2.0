@@ -47,9 +47,9 @@ text = "JUGADOR 1"
 layout_mode = 0
 offset_left = 300.0
 offset_top = 250.0
-offset_right = 450.0
+offset_right = 500.0
 offset_bottom = 285.0
-placeholder_text = "Nombre"
+placeholder_text = "NOMBRE Y APELLIDOS"
 
 [node name="Lbl2" type="Label" parent="."]
 layout_mode = 0
@@ -64,9 +64,9 @@ text = "JUGADOR 2"
 layout_mode = 0
 offset_left = 800.0
 offset_top = 250.0
-offset_right = 950.0
+offset_right = 1000.0
 offset_bottom = 285.0
-placeholder_text = "Nombre"
+placeholder_text = "NOMBRE Y APELLIDOS"
 
 [node name="BotonGuardar" type="Button" parent="."]
 layout_mode = 0
@@ -94,4 +94,6 @@ offset_bottom = 218.0
 texture = ExtResource("4_4pc1o")
 expand_mode = 1
 
+[connection signal="focus_entered" from="NombreJugador1" to="." method="_OnFocusEnteredTextEdit1"]
+[connection signal="focus_entered" from="NombreJugador2" to="." method="_OnFocusEnteredTextEdit2"]
 [connection signal="pressed" from="BotonGuardar" to="." method="_OnBotonIniciarPressed"]

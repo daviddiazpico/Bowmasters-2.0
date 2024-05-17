@@ -8,6 +8,7 @@ public partial class GuardarDatosRanking : Control
 	Label lblEnhorabuena;
 	TextEdit inputField1;
 	TextEdit inputField2;
+	Color colorPrincipal;
 
 	string nombreJugador1;
 	string nombreJugador2;
@@ -21,8 +22,9 @@ public partial class GuardarDatosRanking : Control
 	{
 		haGanadoJugador1 = DatosPartida.Instancia.HaGanadoJugador1;
 		haGanadoJugador2 = DatosPartida.Instancia.HaGanadoJugador2;
-		StreamReader ficheroRanking = null;
+
 		rankingTemporal = new Ranking();
+		StreamReader ficheroRanking = null;
 
 		try
 		{
@@ -70,6 +72,7 @@ public partial class GuardarDatosRanking : Control
 
 		inputField1 = GetNode<TextEdit>("NombreJugador1");
 		inputField2 = GetNode<TextEdit>("NombreJugador2");
+		colorPrincipal = inputField1.Modulate;
 	}
 
 	public string NombreJugador1 { get => nombreJugador1; set => nombreJugador1 = value; }
@@ -84,32 +87,56 @@ public partial class GuardarDatosRanking : Control
 
 	private void _OnBotonIniciarPressed()
 	{
-		nombreJugador1 = inputField1.Text;
-		nombreJugador2 = inputField2.Text;
+		nombreJugador1 = inputField1.Text.Trim();
+		nombreJugador2 = inputField2.Text.Trim();
 
-		if (ExisteElUsuario(nombreJugador1) && ExisteElUsuario(nombreJugador2))
+		if (nombreJugador1 == "" || nombreJugador2 == "")
 		{
-			ModificarRegistro(nombreJugador1, haGanadoJugador1);
-			ModificarRegistro(nombreJugador2, haGanadoJugador2);
-		}
-		else if (ExisteElUsuario(nombreJugador1) && !ExisteElUsuario(nombreJugador2))
-		{
-			ModificarRegistro(nombreJugador1, haGanadoJugador1);
-			rankingTemporal.AddRegistro(new RegistroRanking(nombreJugador2, 1, haGanadoJugador2));
-		}
-		else if (!ExisteElUsuario(nombreJugador1) && ExisteElUsuario(nombreJugador2))
-		{
-			rankingTemporal.AddRegistro(new RegistroRanking(nombreJugador1, 1, haGanadoJugador1));
-			ModificarRegistro(nombreJugador2, haGanadoJugador2);
+			inputField1.Modulate = new Color(255, 0, 0);
+			inputField2.Modulate = new Color(255, 0, 0);
 		}
 		else
 		{
-			rankingTemporal.AddRegistro(new RegistroRanking(nombreJugador1, 1, haGanadoJugador1));
-			rankingTemporal.AddRegistro(new RegistroRanking(nombreJugador2, 1, haGanadoJugador2));
+			if (ExisteElUsuario(nombreJugador1) && ExisteElUsuario(nombreJugador2))
+			{
+				ModificarRegistro(nombreJugador1, haGanadoJugador1);
+				ModificarRegistro(nombreJugador2, haGanadoJugador2);
+			}
+			else if (ExisteElUsuario(nombreJugador1) && !ExisteElUsuario(nombreJugador2))
+			{
+				ModificarRegistro(nombreJugador1, haGanadoJugador1);
+				rankingTemporal.AddRegistro(new RegistroRanking(nombreJugador2, 1, haGanadoJugador2));
+			}
+			else if (!ExisteElUsuario(nombreJugador1) && ExisteElUsuario(nombreJugador2))
+			{
+				rankingTemporal.AddRegistro(new RegistroRanking(nombreJugador1, 1, haGanadoJugador1));
+				ModificarRegistro(nombreJugador2, haGanadoJugador2);
+			}
+			else
+			{
+				rankingTemporal.AddRegistro(new RegistroRanking(nombreJugador1, 1, haGanadoJugador1));
+				rankingTemporal.AddRegistro(new RegistroRanking(nombreJugador2, 1, haGanadoJugador2));
+			}
+			
+			ActualizarRanking();
+			GetTree().ChangeSceneToFile("res://escenas/Pantalla_bienvenida.tscn");
 		}
-		
-		ActualizarRanking();
-		GetTree().ChangeSceneToFile("res://escenas/Pantalla_bienvenida.tscn");
+	}
+
+	private void _OnFocusEnteredTextEdit1()
+	{
+		RestaurarTextEdits();
+	}
+
+	private void _OnFocusEnteredTextEdit2()
+	{
+		RestaurarTextEdits();
+	}
+
+	private void RestaurarTextEdits()
+	{
+		inputField1.Modulate = colorPrincipal;
+		inputField2.Modulate = colorPrincipal;
 	}
 
 	private bool ExisteElUsuario(string nombre)
