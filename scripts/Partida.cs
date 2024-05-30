@@ -65,8 +65,6 @@ public partial class Partida : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		/*GD.Print("JUG 1" + jugador1.BarraVida.Visible);
-		GD.Print("JUG 2" + jugador2.BarraVida.Visible);*/
 		if (temporizadorPartida.IsStopped())
 		{
 			SeguirJugador();
@@ -133,8 +131,10 @@ public partial class Partida : Node2D
 			{
 				jugador1.BarraVida.Visible = false;
 				jugador2.BarraVida.Visible = false;
+
 				jugador1.Atacar(jugador1.VelocidadFlecha);
 				jugadorActivo = jugador2;
+
 				turnoJugador = false;
 			}
 			else
@@ -170,8 +170,10 @@ public partial class Partida : Node2D
 			{
 				jugador1.BarraVida.Visible = false;
 				jugador2.BarraVida.Visible = false;
+
 				jugador2.Atacar(jugador2.VelocidadFlecha);
 				jugadorActivo = jugador1;
+
 				turnoJugador = true;
 			}
 			else

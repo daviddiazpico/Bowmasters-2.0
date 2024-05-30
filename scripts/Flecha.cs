@@ -28,7 +28,6 @@ public partial class Flecha : RigidBody2D
 
 	public void Disparar(Vector2 velocidadFlecha)
 	{
-		//anim_Flecha.Play();
 		LinearVelocity = velocidadFlecha;
 	}
 

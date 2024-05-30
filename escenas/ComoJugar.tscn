@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d233oa0e4isaa"]
+[gd_scene load_steps=5 format=3 uid="uid://d233oa0e4isaa"]
 
 [ext_resource type="Script" path="res://scripts/ComoJugar.cs" id="1_4c5s6"]
 [ext_resource type="FontFile" uid="uid://dlf21pd7ykhq0" path="res://assets/fuentes/Insanibc.ttf" id="1_vfx57"]
+[ext_resource type="Script" path="res://scripts/FondoParallax.cs" id="3_c7cbn"]
+[ext_resource type="Texture2D" uid="uid://b7n3r70igsm4k" path="res://assets/imagenes/complementos/fondo_ranking.png" id="4_0jsg3"]
 
 [node name="ComoJugar" type="Control"]
 layout_mode = 3
@@ -13,11 +15,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4c5s6")
 
+[node name="FondoParallax" type="ParallaxBackground" parent="."]
+script = ExtResource("3_c7cbn")
+
+[node name="CapaFondo" type="ParallaxLayer" parent="FondoParallax"]
+motion_mirroring = Vector2(1198, 598)
+
+[node name="SpriteFondo" type="Sprite2D" parent="FondoParallax/CapaFondo"]
+scale = Vector2(3.235, 2.317)
+texture = ExtResource("4_0jsg3")
+centered = false
+
 [node name="LblIntroduccion" type="Label" parent="."]
 layout_mode = 0
-offset_left = 200.0
+offset_left = 170.0
 offset_top = 80.0
-offset_right = 1050.0
+offset_right = 1020.0
 offset_bottom = 141.0
 theme_override_fonts/font = ExtResource("1_vfx57")
 theme_override_font_sizes/font_size = 25
@@ -25,21 +38,11 @@ text = "Para jugar a Bowmasters 2.0 lo unico que necesitas es un compañero
 con ganas de jugar, y ya podriais tiraros todo el dia jugando."
 horizontal_alignment = 1
 
-[node name="BotonVolver" type="Button" parent="."]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 150.0
-offset_bottom = 85.0
-theme_override_fonts/font = ExtResource("1_vfx57")
-theme_override_font_sizes/font_size = 20
-text = "VOLVER"
-
 [node name="LblControles" type="Label" parent="."]
 layout_mode = 0
-offset_left = 200.0
+offset_left = 170.0
 offset_top = 200.0
-offset_right = 895.0
+offset_right = 1070.0
 offset_bottom = 387.0
 theme_override_fonts/font = ExtResource("1_vfx57")
 theme_override_font_sizes/font_size = 30
@@ -49,5 +52,15 @@ Cargar Disparo -> MANTENER PULSADO ESPACIO
 Disparar -> SOLTAR ESPACIO (Una vez este cargado el disparo)
 Elegir dirección de la flecha -> CLICK IZQUIERDO
 "
+
+[node name="BotonVolver" type="Button" parent="."]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 461.0
+offset_right = 714.0
+offset_bottom = 504.0
+theme_override_fonts/font = ExtResource("1_vfx57")
+theme_override_font_sizes/font_size = 30
+text = "VOLVER AL MENU"
 
 [connection signal="pressed" from="BotonVolver" to="." method="_OnBotonVolverPressed"]

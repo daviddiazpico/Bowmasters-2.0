@@ -64,12 +64,12 @@ public partial class Jugador : CharacterBody2D
 
 		if (nuevaFlecha != null)
 		{
+			if (this is Jugador2)
+			{
+				nuevaFlecha.RotationDegrees = 180;
+			}
 			nuevaFlecha.Disparar(velocidadFlecha);
 			disparoCargado = false;
-		}
-		else
-		{
-			GD.Print("Flecha instanciada == null");
 		}
 	}
 
@@ -97,7 +97,7 @@ public partial class Jugador : CharacterBody2D
 
     public void QuitarVida()
     {
-        vida -= 200;
+        vida -= 33;
         barraVida.Value = vida;
     }
 

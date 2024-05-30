@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-public partial class RegistroRanking : Node, IEquatable<RegistroRanking>
+public partial class RegistroRanking : Node, IEquatable<RegistroRanking>, IComparable<RegistroRanking>
 {
     string nombreJugador;
     int partJugadas;
@@ -77,5 +77,10 @@ public partial class RegistroRanking : Node, IEquatable<RegistroRanking>
     public bool Equals(RegistroRanking other)
     {
         return this.nombreJugador.Equals(other.nombreJugador);
+    }
+
+    public int CompareTo(RegistroRanking registro)
+    {
+        return registro.partGanadas.CompareTo(this.partGanadas);
     }
 }

@@ -5,18 +5,20 @@ using System.IO;
 public partial class VerRanking : Control
 {
 	Ranking ranking;
-	int numRegistrosMostrados;
+	int numMostradosTotal;
+	int numMostradosRonda;
 
 	Label lblRanking;
 	Button botonSiguiente;
 	Button botonAtras;
+	OptionButton botonOpciones;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
 		ranking = new Ranking();
+
 		string[] lineasRanking = File.ReadAllLines("ficheros/ranking.txt");
-		GD.Print(lineasRanking.Length);
 		if (lineasRanking.Length > 0)
 		{
 			for (int i = 0; i<lineasRanking.Length; i++)
@@ -26,30 +28,19 @@ public partial class VerRanking : Control
 					Convert.ToInt32(trozosRegistro[2]), Convert.ToInt32(trozosRegistro[3]), Convert.ToDateTime(trozosRegistro[4])));
 			}
 		}
-		
 
-		numRegistrosMostrados = 0;
+		ranking.ListaRanking.Sort();
 
 		lblRanking = GetNode<Label>("Lbl_MostrarRanking");
 		botonSiguiente = GetNode<Button>("BotonSiguiente");
 		botonAtras = GetNode<Button>("BotonAtras");
+		botonOpciones = GetNode<OptionButton>("BotonOpciones");
 		
-		if (ranking.ListaRanking.Count < 10)
-		{
-			foreach (RegistroRanking r in ranking.ListaRanking)
-			{
-				lblRanking.Text += r + "\n";
-			}
-		}
-		else
-		{
-			botonSiguiente.Visible = true;
-			for (int i = 0; i<10; i++)
-			{
-				lblRanking.Text += ranking.ListaRanking[i] + "\n";
-			}
-			numRegistrosMostrados += 10;
-		}
+		botonSiguiente.Visible = false;
+		botonAtras.Visible = false;
+		numMostradosTotal = 0;
+		
+		MostrarRegistros();
 	}
 
 	public Ranking Ranking { get => ranking; set => ranking = value; }
@@ -62,39 +53,92 @@ public partial class VerRanking : Control
 
 	private void _OnBotonAtrasPressed()
 	{
-		if (numRegistrosMostrados > 0)
+		if (numMostradosTotal > 10)
 		{
 			lblRanking.Text = "";
-			numRegistrosMostrados-=20;
-			for (int i = numRegistrosMostrados; i<numRegistrosMostrados+10; i++)
+
+			numMostradosTotal -= numMostradosRonda+10;
+			int i = numMostradosTotal;
+			numMostradosRonda = 0;
+
+			while (i < numMostradosTotal+10 && i < ranking.ListaRanking.Count)
 			{
 				lblRanking.Text += ranking.ListaRanking[i] + "\n";
+				i++;
+				numMostradosRonda++;
 			}
-			numRegistrosMostrados+=10;
-		}
-
-		if (numRegistrosMostrados <= 10)
-		{
-			botonAtras.Visible = false;
+			numMostradosTotal+=numMostradosRonda;
 		}
 	}
 
 	private void _OnBotonSiguientePressed()
 	{
-		botonAtras.Visible = true;
-		if (numRegistrosMostrados < ranking.ListaRanking.Count)
+		if (numMostradosTotal < ranking.ListaRanking.Count)
 		{
 			lblRanking.Text = "";
-			for (int i = numRegistrosMostrados; i<numRegistrosMostrados+10; i++)
+
+			numMostradosRonda = 0;
+			int i = numMostradosTotal;
+			
+			while (i < numMostradosTotal+10 && i < ranking.ListaRanking.Count)
 			{
 				lblRanking.Text += ranking.ListaRanking[i] + "\n";
+				i++;
+				numMostradosRonda++;
 			}
-			numRegistrosMostrados+=10;
+			numMostradosTotal+=numMostradosRonda;
 		}
 	}
 
 	private void _OnBotonVolverPressed()
 	{
 		GetTree().ChangeSceneToFile("res://escenas/Pantalla_bienvenida.tscn");
+	}
+
+	private void _OnBotonOrdenarPressed()
+	{
+		int idxOpcion = botonOpciones.GetSelectedId();
+
+		if (idxOpcion == 0)
+		{
+			ranking.ListaRanking.Sort();
+		}
+		else if (idxOpcion == 1)
+		{
+			ranking.ListaRanking.Sort((r1, r2) => r2.PartPerdidas.CompareTo(r1.PartPerdidas));
+		}
+		else if (idxOpcion == 2)
+		{
+			ranking.ListaRanking.Sort((r1, r2) => r2.PartJugadas.CompareTo(r1.PartJugadas));
+		}
+
+		MostrarRegistros();
+	}
+
+	private void MostrarRegistros()
+	{
+		lblRanking.Text = "";
+		if (ranking.ListaRanking.Count < 10)
+		{
+			foreach (RegistroRanking r in ranking.ListaRanking)
+			{
+				lblRanking.Text += r + "\n";
+			}
+		}
+		else
+		{
+			ActivarBotones();
+			for (int i = 0; i<10; i++)
+			{
+				lblRanking.Text += ranking.ListaRanking[i] + "\n";
+			}
+			numMostradosTotal += 10;
+		}
+	}
+
+	private void ActivarBotones()
+	{
+		botonSiguiente.Visible = true;
+		botonAtras.Visible = true;
 	}
 }
