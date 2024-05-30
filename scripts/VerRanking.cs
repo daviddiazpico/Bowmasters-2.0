@@ -38,9 +38,8 @@ public partial class VerRanking : Control
 		
 		botonSiguiente.Visible = false;
 		botonAtras.Visible = false;
-		numMostradosTotal = 0;
 		
-		MostrarRegistros();
+		MostrarPrimerosRegistros();
 	}
 
 	public Ranking Ranking { get => ranking; set => ranking = value; }
@@ -112,11 +111,13 @@ public partial class VerRanking : Control
 			ranking.ListaRanking.Sort((r1, r2) => r2.PartJugadas.CompareTo(r1.PartJugadas));
 		}
 
-		MostrarRegistros();
+		MostrarPrimerosRegistros();
 	}
 
-	private void MostrarRegistros()
+	private void MostrarPrimerosRegistros()
 	{
+		numMostradosTotal = 0;
+
 		lblRanking.Text = "";
 		if (ranking.ListaRanking.Count < 10)
 		{

@@ -57,9 +57,12 @@ public partial class RegistroRanking : Node, IEquatable<RegistroRanking>, ICompa
 
 
     public override string ToString()
-    {
-        return $"{nombreJugador} - Jugadas -> {partJugadas}," + 
-            $"Ganadas -> {partGanadas}, Perdidas -> {partPerdidas}, 1º vez que jugo -> {primeraVezJugo.ToString("d")}";
+    {  
+        return $"{nombreJugador.ToUpper()}:  " +
+            $"Jugadas: {partJugadas}  -  " +
+            $"Win: {partGanadas}  -  " +
+            $"Lose: {partPerdidas}  -  " +
+            $"1ª Partida: {primeraVezJugo.ToString("d")}";
     }
 
     public string ToString(string formato)
